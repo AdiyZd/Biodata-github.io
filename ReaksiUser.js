@@ -1,26 +1,26 @@
 document.getElementById('banana').addEventListener('submit', function (e) {
-    e.preventDefault(); // gak boleh submit std
+    e.preventDefault(); // Mencegah form submit standar
 
-    // id dari html
+    // Ambil nilai dari form
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
-    let keterangan = document.getElementById('Pesan').value;
+    let keterangan = document.getElementById('Pesan').value; // Pastikan ID sesuai
 
     // Info token
-    let id = '7355777672'; // chat id ke saya
-    let user = '7504445457:AAFbAe8kIMiCFiSJCxsizNy-6T8sPvP5kbY'; // ser interaksi ke saya
+    let id = '7355777672'; // Chat ID
+    let user = '7504445457:AAFbAe8kIMiCFiSJCxsizNy-6T8sPvP5kbY'; // Token Bot
 
-    // text input yang akan di kirim ke telegram
+    // Format pesan dari input user
     let mycomentar = `Nama: ${name}\nEmail: ${email}\nPesan: ${keterangan}`;
 
-    // URL API Telegram
+    // URL untuk API Telegram
     let URL = `https://api.telegram.org/bot${user}/sendMessage`;
 
-    // req api
+    // Mengirim request ke API Telegram
     fetch(URL, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json' // Penulisan header yang benar
         },
         body: JSON.stringify({
             chat_id: id,
