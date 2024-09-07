@@ -1,22 +1,22 @@
 document.getElementById('banana').addEventListener('submit', function (e) {
-    e.preventDefault(); // gak boleh submit std
+    e.preventDefault(); // Mencegah form dari reload page
 
-    // id dari html
+    // Ambil nilai input dari form
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let keterangan = document.getElementById('Pesan').value;
 
     // Info token
     let id = '7355777672'; // chat id ke saya
-    let user = '7504445457:AAFbAe8kIMiCFiSJCxsizNy-6T8sPvP5kbY'; // ser interaksi ke saya
+    let user = '7504445457:AAFbAe8kIMiCFiSJCxsizNy-6T8sPvP5kbY'; // Token bot
 
-    // text input yang akan di kirim ke telegram
+    // Text input yang akan dikirim ke Telegram
     let mycomentar = `Nama: ${name}\nEmail: ${email}\nPesan: ${keterangan}`;
 
     // URL API Telegram
     let URL = `https://api.telegram.org/bot${user}/sendMessage`;
 
-    // req api
+    // Kirim data ke Telegram
     fetch(URL, {
         method: 'POST',
         headers: {
@@ -30,13 +30,16 @@ document.getElementById('banana').addEventListener('submit', function (e) {
     .then(response => response.json())
     .then(data => {
         if (data.ok) {
-            alert("Pesan berhasil dikirim! Terima kasih! 🤗");
+            // Tampilkan SweetAlert2 jika pengiriman berhasil
+            showSuccessAlert();
         } else {
-            alert("Gagal mengirim pesan. Silahkan cek koneksi internet atau coba lagi nanti. 😪");
+            // Tampilkan SweetAlert2 jika terjadi kesalahan
+            showErrorAlert('Silahkan cek koneksi internet atau coba lagi nanti.');
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert("Terjadi kesalahan sistem. Silahkan tunggu beberapa saat dan coba lagi.");
+        // Tampilkan SweetAlert2 jika terjadi kesalahan sistem
+        showErrorAlert('Silahkan tunggu beberapa saat dan coba lagi.');
     });
 });
