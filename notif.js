@@ -5,7 +5,7 @@ function showSuccessAlert() {
         icon: 'success',
         title: 'Pesan berhasil dikirim!',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 500,
         customClass: {
             container: 'swal-center'
         }
